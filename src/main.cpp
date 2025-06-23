@@ -1,16 +1,23 @@
 #include <iostream>
+#include <string>
 #include "sys/socket.h"
 #include "netinet/in.h"
 
-#include "get_resources.cpp"
+#include "nlohmann/json.hpp"
+using json = nlohmann::json;
+
+#include "get_resources.hpp"
 
 #define PORT 4500
-#define contacts_path = "./resources/contacts.json"
-#define emojis_path = "./resources/emojis.json"
+
+const std::string contacts_path = "./resources/contacts.json";
+const std::string emojis_path = "./resources/emojis.json";
 
 int main() {
-    int sock = socket(AF_INET, SOCK_STREAM, 0);
-
+    json emojis = get_emojis();
+    json contacts = get_contacts();
+    std::cout << emojis.dump(2) << std::endl; // the arg passed to .dump is the tab size
+    std::cout << contacts.dump(2) << std::endl;
 
     return 0;
 }
