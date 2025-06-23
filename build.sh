@@ -18,7 +18,7 @@ if [ ! -f conan_toolchain.cmake ]; then
 fi
 
 mkdir -p Libraries
-if [ ! -d "./Libraries/metal-cpp" ]; then
+if [ ! -d "../Libraries/metal-cpp" ]; then
   echo DOWNLOADING METAL LIBRARY FOR MACOS
 
   TEMP_FILE=$(mktemp).zip

@@ -1,25 +1,29 @@
 #include <iostream>
 #include <string>
-#include "sys/socket.h"
-#include "netinet/in.h"
-
-#include <Metal/Metal.hpp>
-//#include <Appkit/Appkit.hpp>
-//#include <Metalkit/Metalkit.hpp>
+#include <unistd.h>
+#include <sys/socket.h>
 
 #include "nlohmann/json.hpp"
 using json = nlohmann::json;
 
 #include "get_resources.hpp"
-
-#define PORT 4500
+#include "connections/connect.hpp"
 
 const std::string contacts_path = "./resources/contacts.json";
 const std::string emojis_path = "./resources/emojis.json";
 
-json emojis = get_emojis();
-json contacts = get_contacts();
+json _emojis = get_emojis();
+json* emojis = &_emojis;
+json _contacts = get_contacts();
+json* contacts = &_contacts;
 
 int main() {
+    int sock = listen_for_conn();
+    char buffer[1024];
+
+    read(sock, buffer, 1024);
+    std::cout << buffer << std::endl;
+    close(sock);
+
     return 0;
 }

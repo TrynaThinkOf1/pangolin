@@ -12,6 +12,7 @@ find_library(QUARTS_CORE QuartzCore REQUIRED)
 add_executable(${PROJECT_NAME}
         src/main.cpp
         src/get_resources.cpp
+        src/connections/connect.cpp
 )
 
 target_include_directories(${PROJECT_NAME} PRIVATE
