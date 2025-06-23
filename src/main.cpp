@@ -3,6 +3,10 @@
 #include "sys/socket.h"
 #include "netinet/in.h"
 
+#include <Metal/Metal.hpp>
+//#include <Appkit/Appkit.hpp>
+//#include <Metalkit/Metalkit.hpp>
+
 #include "nlohmann/json.hpp"
 using json = nlohmann::json;
 
@@ -13,11 +17,9 @@ using json = nlohmann::json;
 const std::string contacts_path = "./resources/contacts.json";
 const std::string emojis_path = "./resources/emojis.json";
 
-int main() {
-    json emojis = get_emojis();
-    json contacts = get_contacts();
-    std::cout << emojis.dump(2) << std::endl; // the arg passed to .dump is the tab size
-    std::cout << contacts.dump(2) << std::endl;
+json emojis = get_emojis();
+json contacts = get_contacts();
 
+int main() {
     return 0;
 }
